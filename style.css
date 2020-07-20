@@ -1,6 +1,7 @@
 .jumbotron {
     text-align: center;
     padding: 5px;
+    background-color: aquamarine;
 }
 
 .display-4 {
@@ -8,5 +9,19 @@
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 30px;
+}
+
+.forecastDiv {
+    margin-top: 20px; 
+}
+
+.my-item:hover
+{
+    color: darkcyan;
+}
+
+.day-div {
+    background-color: darkcyan;
+    margin: 10px;
 }

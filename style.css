@@ -1,17 +1,20 @@
 .jumbotron {
     text-align: center;
     padding: 5px;
-    background-color: aquamarine;
+    color: white;
+    margin-bottom: 0;
 }
 
 .display-4 {
-    font-size: 30px;
+    font-size: 40px;
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 20px;
 }
-
+.current {
+    margin: 10px;
+}
 .forecastDiv {
     margin-top: 20px; 
 }
@@ -20,8 +23,18 @@ h2 {
 {
     color: darkcyan;
 }
+.card {
+    margin-top: 10px;
+}
 
 .day-div {
     background-color: darkcyan;
     margin: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.date-div {
+    font-size: 20px;
+    font-weight: bold
 }

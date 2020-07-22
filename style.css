@@ -1,3 +1,4 @@
+/* Header */
 .jumbotron {
     text-align: center;
     padding: 5px;
@@ -9,19 +10,19 @@
     font-size: 40px;
 }
 
+/* secondary headers */
 h2 {
     font-size: 20px;
 }
+
+/* current weather  */
 .current {
     margin: 10px;
 }
+
+/* 5 day forecast */
 .forecastDiv {
     margin-top: 20px; 
-}
-
-.my-item:hover
-{
-    color: darkcyan;
 }
 .card {
     margin-top: 10px;
@@ -36,5 +37,15 @@ h2 {
 
 .date-div {
     font-size: 20px;
-    font-weight: bold
+    font-weight: bold;
+
+/* side nav - search bar */
+ #searchbtn:hover {
+    color: darkcyan;
 }
+
+.my-item:hover{  
+color: darkcyan;
+}
+
+

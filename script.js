@@ -1,7 +1,7 @@
 // global variables 
 var searchBtn = $("#searchbtn");
-var date = moment().format( "M" + "/" + "D" + "/" + "YYYY");
-// access data base 
+var date = moment().format("M" + "/" + "D" + "/" + "YYYY");
+// access saved data 
 var a = JSON.parse(localStorage.getItem("cityList")) || [];
 var q = a[0] || "London";
 
@@ -10,27 +10,31 @@ getAPI(q);
 getForecast(q);
 displayList();
 
-// onclick function 
+// onclick search function 
 searchBtn.on("click", function (event) {
     event.preventDefault();
 
     var newCity = document.getElementById("input").value
+
+//calling weather and forecast function 
     getAPI(newCity);
     getForecast(newCity);
-    
+
+//prevent having city name twice 
     a = a.filter(function (city) {
         return city.toLowerCase() !== newCity.toLowerCase()
     });
-    
+
+//adding new city first
     a.unshift(newCity)
     displayList();
-    
-    //saving to local storage 
+
+//saving to local storage 
     localStorage.setItem("cityList", JSON.stringify(a));
     document.getElementById("input").value = "";
 });
 
-// displays sidebar list of cities
+// displays sidebar list of cities function
 function displayList() {
     $(".city-list").empty();
     for (var i = 0; i < a.length; i++) {
@@ -41,11 +45,13 @@ function displayList() {
         $(".city-list").append(listItem);
     }
 };
+
 // making listed items clickable
 function searchClick() {
     getAPI(this.textContent);
     getForecast(this.textContent);
 };
+
 //getting the API info
 function getAPI(city) {
     var APIKey = "&appid=60711a8d5dec0c69de676a31a60af232";
@@ -57,12 +63,11 @@ function getAPI(city) {
         method: "GET"
     })
         .then(function (response) {
-            console.log(response);
             var weatherIcon = "https://openweathermap.org/img/wn/" + response.weather[0].icon + ".png";
             var lat = response.coord.lat
             var lon = response.coord.lon
             getUV(lat, lon)
-            $(".city").html("<h1>" + response.name + " (" + date + ") "  + "<img src=" + weatherIcon + "></img>" );
+            $(".city").html("<h1>" + response.name + " (" + date + ") " + "<img src=" + weatherIcon + "></img>");
             $(".temp").html("Temperature: " + response.main.temp + " <span> &#8457;</span>");
             $(".humidity").html("Humidity: " + response.main.humidity + " <span> &#37;</span>");
             $(".wind").html("Wind Speed: " + response.wind.speed + " MPH");
@@ -79,7 +84,6 @@ function getUV(lat, lon) {
     var queryURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + APIKey;
     $.get(queryURL)
         .then(function (response) {
-            console.log(response)
             $(".uv").html("UV Index: " + response.value);
             if (response.value > 11) {
                 $(".uv").addClass("btn btn-danger");
@@ -92,6 +96,7 @@ function getUV(lat, lon) {
             console.warn(error)
         });
 };
+
 //getting forecast info
 function getForecast(city) {
     $(".days").empty()
@@ -100,25 +105,27 @@ function getForecast(city) {
     $.get(queryURL)
         .then(function (response) {
             console.log("forecast", response)
-            for (var i = 0; i <= 4; i++) {
-            // create var to get correct dates 
-               var r = (i + 1) * 7;
-            // day forecast divs 
-               var dayDiv = $("<div>");
-               dayDiv.addClass("col day-div");
+            for (var i = 0; i < 5; i++) {
 
-                var dateDiv = $("<div>").html(moment().add(i + 1, "days").format( "M" + "/" + "D" + "/" + "YYYY"));  
-                dateDiv.addClass("date-div")              
+                // create var to get correct dates 
+                var c = (i * 8);
+                
+                // day forecast divs 
+                var dayDiv = $("<div>");
+                dayDiv.addClass("col day-div");
+
+                var dateDiv = $("<div>").html(moment().add(i + 1, "days").format("M" + "/" + "D" + "/" + "YYYY"));
+                dateDiv.addClass("date-div")
                 dayDiv.append(dateDiv);
 
                 var iconDiv = $("<img>");
-                iconDiv.attr("src", "https://openweathermap.org/img/wn/" + response.list[r].weather[0].icon + "@2x.png");
-                
+                iconDiv.attr("src", "https://openweathermap.org/img/wn/" + response.list[c].weather[0].icon + "@2x.png");
+
                 var tempDiv = $("<p>");
-                tempDiv.html("Temp: " + response.list[r].main.temp + " <span> &#8457;</span>");
-              
+                tempDiv.html("Temp: " + response.list[c].main.temp + " <span> &#8457;</span>");
+
                 var humidityDiv = $("<p>");
-                humidityDiv.html("Humidity: " + response.list[r].main.humidity + " <span> &#37;</span>");
+                humidityDiv.html("Humidity: " + response.list[c].main.humidity + " <span> &#37;</span>");
 
                 //append all divs to main day div
                 dayDiv.append(iconDiv, tempDiv, humidityDiv);

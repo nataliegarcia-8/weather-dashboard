@@ -81,7 +81,7 @@ function getAPI(city) {
 //getting UV info
 function getUV(lat, lon) {
     var APIKey = "&appid=60711a8d5dec0c69de676a31a60af232";
-    var queryURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + APIKey;
+    var queryURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat + "&lon=" + lon + APIKey;
     $.get(queryURL)
         .then(function (response) {
             $(".uv").html("UV Index: " + response.value);
@@ -101,7 +101,7 @@ function getUV(lat, lon) {
 function getForecast(city) {
     $(".days").empty()
     var APIKey = "&appid=60711a8d5dec0c69de676a31a60af232";
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + APIKey + "&units=imperial";
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + APIKey + "&units=imperial";
     $.get(queryURL)
         .then(function (response) {
             console.log("forecast", response)

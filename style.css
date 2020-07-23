@@ -5,7 +5,6 @@
     color: white;
     margin-bottom: 0;
 }
-
 .display-4 {
     font-size: 40px;
 }
@@ -13,6 +12,7 @@
 /* secondary headers */
 h2 {
     font-size: 20px;
+    
 }
 
 /* current weather  */
@@ -27,7 +27,6 @@ h2 {
 .card {
     margin-top: 10px;
 }
-
 .day-div {
     background-color: darkcyan;
     margin: 10px;
@@ -38,14 +37,14 @@ h2 {
 .date-div {
     font-size: 20px;
     font-weight: bold;
+}
 
-/* side nav - search bar */
- #searchbtn:hover {
+/* side nav -search bar */
+
+.my-item:hover {
     color: darkcyan;
 }
 
-.my-item:hover{  
-color: darkcyan;
+#searchbtn:hover {
+    background-color: darkcyan;
 }
-
-

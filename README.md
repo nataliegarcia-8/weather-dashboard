@@ -1,7 +1,7 @@
 # weather-dashboard
 A weather dashboard utilizing OpenWeather API to provide weather data by city. 
 
-Link: <a href=""> Click to view Weather Dashboard</a>
+Link: <a href="https://nataliegarcia-8.github.io/weather-dashboard/"> Click to view Weather Dashboard</a>
 
 Description: 
 

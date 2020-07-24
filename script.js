@@ -15,7 +15,7 @@ searchBtn.on("click", function (event) {
     event.preventDefault();
 
     var newCity = document.getElementById("input").value
-
+    
 //calling weather and forecast function 
     getAPI(newCity);
     getForecast(newCity);
@@ -74,7 +74,7 @@ function getAPI(city) {
 
         })
         .catch(function (error) {
-            console.warn(error)
+             console.log(error) 
         })
 }
 
@@ -134,6 +134,9 @@ function getForecast(city) {
         })
 
         .catch(function (error) {
-            console.warn(error)
+            if (error) {
+                alert("Please enter a valid city");
+                
+            }
         })
 };
